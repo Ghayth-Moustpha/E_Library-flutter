@@ -7,7 +7,7 @@ import '../books/book_detail_screen.dart';
 class PublisherDetailScreen extends StatefulWidget {
   final Publisher publisher;
 
-  const PublisherDetailScreen({Key? key, required this.publisher}) : super(key: key);
+  const PublisherDetailScreen({super.key, required this.publisher});
 
   @override
   _PublisherDetailScreenState createState() => _PublisherDetailScreenState();

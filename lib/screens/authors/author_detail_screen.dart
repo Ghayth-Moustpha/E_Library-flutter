@@ -7,7 +7,7 @@ import '../books/book_detail_screen.dart';
 class AuthorDetailScreen extends StatefulWidget {
   final Author author;
 
-  const AuthorDetailScreen({Key? key, required this.author}) : super(key: key);
+  const AuthorDetailScreen({super.key, required this.author});
 
   @override
   _AuthorDetailScreenState createState() => _AuthorDetailScreenState();

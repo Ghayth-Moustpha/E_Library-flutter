@@ -7,7 +7,7 @@ import 'book_detail_screen.dart';
 class BooksScreen extends StatefulWidget {
   final bool showSearch;
 
-  const BooksScreen({Key? key, this.showSearch = false}) : super(key: key);
+  const BooksScreen({super.key, this.showSearch = false});
 
   @override
   _BooksScreenState createState() => _BooksScreenState();

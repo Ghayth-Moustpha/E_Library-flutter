@@ -5,6 +5,8 @@ import '../../models/book.dart';
 import 'publisher_detail_screen.dart';
 
 class PublishersScreen extends StatefulWidget {
+  const PublishersScreen({super.key});
+
   @override
   _PublishersScreenState createState() => _PublishersScreenState();
 }
