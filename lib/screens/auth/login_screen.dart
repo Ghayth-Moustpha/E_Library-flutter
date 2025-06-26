@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: ${e.toString()}')),
+          SnackBar(content: Text('فشل تسجيل الدخول: ${e.toString()}')),
         );
       }
     } finally {
@@ -54,107 +54,111 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.blue.shade50,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.book,
-                  size: 80,
-                  color: Colors.blue,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Welcome Back',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue.shade800,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 36),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Image.network(
+                    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/SVU-LOGO.jpg/800px-SVU-LOGO.jpg',
+                    height: 100,
                   ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Sign in to your account',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade600,
-                  ),
-                ),
-                SizedBox(height: 40),
-                TextFormField(
-                  controller: _usernameController,
-                  decoration: InputDecoration(
-                    labelText: 'Username',
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  SizedBox(height: 20),
+                  Text(
+                    'برنامج الماجستير في أمن الويب',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue.shade800,
                     ),
-                    filled: true,
-                    fillColor: Colors.white,
+                    textAlign: TextAlign.center,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your username';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  SizedBox(height: 10),
+                  Text(
+                    'تسجيل الدخول إلى حسابك',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey.shade700,
                     ),
-                    filled: true,
-                    fillColor: Colors.white,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 30),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: _isLoading ? null : _login,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
+                  SizedBox(height: 30),
+                  TextFormField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      labelText: 'اسم المستخدم',
+                      prefixIcon: Icon(Icons.person),
+                      border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      filled: true,
+                      fillColor: Colors.white,
                     ),
-                    child: _isLoading
-                        ? CircularProgressIndicator(color: Colors.white)
-                        : Text(
-                            'Sign In',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'الرجاء إدخال اسم المستخدم';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(height: 20),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SignupScreen()),
-                    );
-                  },
-                  child: Text(
-                    "Don't have an account? Sign Up",
-                    style: TextStyle(color: Colors.blue.shade700),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'كلمة المرور',
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'الرجاء إدخال كلمة المرور';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-              ],
+                  SizedBox(height: 30),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: _isLoading ? null : _login,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue.shade700,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: _isLoading
+                          ? CircularProgressIndicator(color: Colors.white)
+                          : Text(
+                              'تسجيل الدخول',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SignupScreen()),
+                      );
+                    },
+                    child: Text(
+                      "ليس لديك حساب؟ قم بإنشاء حساب جديد",
+                      style: TextStyle(color: Colors.blue.shade700),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
