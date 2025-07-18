@@ -1,33 +1,31 @@
-import 'package:book_management_app/api_service.dart';
-import 'package:book_management_app/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'screens/home_screen.dart';
+import 'screens/recording_screen.dart';
+import 'screens/recordings_list_screen.dart';
+import 'services/camera_service.dart';
 
-import 'screens/splash_screen.dart';
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize camera service
+  await CameraService.initialize();
+  
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthService()),
-        Provider(create: (_) => ApiService()),
-      ],
-      child: MaterialApp(
-        title: 'Book Management',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: SplashScreen(),
-        debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      title: 'Driving Dataset Collector',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: HomeScreen(),
+      routes: {
+        '/recording': (context) => RecordingScreen(),
+        '/recordings': (context) => RecordingsListScreen(),
+      },
     );
   }
 }
